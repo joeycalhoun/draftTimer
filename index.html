@@ -1,0 +1,226 @@
+<HTML>
+
+<head>
+    <title>Timer</title>
+    <link rel="stylesheet" type="text/css"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+</head>
+
+<body>
+    <div class="pos-f-t">
+        <div class="collapse" id="navbarToggleExternalContent">
+            <div class="bg-dark p-4">
+                <div class="row justify-content-md-center">
+                    <div class="col-6">
+                        <button class="btn btn-secondary btn-lg">Restart</button>
+                        <button class="btn btn-secondary btn-lg">Pause</button>
+                        <button class="btn btn-secondary btn-lg" id="apply">Apply</button>
+                    </div>
+                    <div class="col-6">
+                        <div class="input-group">
+                            <div class="custom-file">
+                              <input type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
+                              <label class="custom-file-label" for="inputGroupFile04">Facts File</label>
+                            </div>
+                            <!-- <div class="input-group-append">
+                              <button class="btn btn-outline-secondary" type="button" id="applyFacts">Apply</button>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="row pt-4">
+                    <!-- <h5 class="text-white h4">Collapsed content</h5>
+                    <span class="text-muted">Toggleable via the navbar brand.</span> -->
+                    <div class="col-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">&nbspTeam 1&nbsp</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Name" aria-label="Username"
+                                aria-describedby="basic-addon1" id="team1">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">&nbspTeam 7&nbsp</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Name" aria-label="Username"
+                                aria-describedby="basic-addon1" id="team7">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- <h5 class="text-white h4">Collapsed content</h5>
+                        <span class="text-muted">Toggleable via the navbar brand.</span> -->
+                    <div class="col-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">&nbspTeam 2&nbsp</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Name" aria-label="Username"
+                                aria-describedby="basic-addon1" id="team2">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">&nbspTeam 8&nbsp</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Name" aria-label="Username"
+                                aria-describedby="basic-addon1" id="team8">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- <h5 class="text-white h4">Collapsed content</h5>
+                            <span class="text-muted">Toggleable via the navbar brand.</span> -->
+                    <div class="col-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">&nbspTeam 3&nbsp</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Name" aria-label="Username"
+                                aria-describedby="basic-addon1" id="team3">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">&nbspTeam 9&nbsp</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Name" aria-label="Username"
+                                aria-describedby="basic-addon1" id="team9">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- <h5 class="text-white h4">Collapsed content</h5>
+                                <span class="text-muted">Toggleable via the navbar brand.</span> -->
+                    <div class="col-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">&nbspTeam 4&nbsp</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Name" aria-label="Username"
+                                aria-describedby="basic-addon1" id="team4">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">Team 10</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Name" aria-label="Username"
+                                aria-describedby="basic-addon1" id="team10">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- <h5 class="text-white h4">Collapsed content</h5>
+                                    <span class="text-muted">Toggleable via the navbar brand.</span> -->
+                    <div class="col-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">&nbspTeam 5&nbsp</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Name" aria-label="Username"
+                                aria-describedby="basic-addon1" id="team5">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">Team 11</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Name" aria-label="Username"
+                                aria-describedby="basic-addon1" id="team11">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- <h5 class="text-white h4">Collapsed content</h5>
+                                        <span class="text-muted">Toggleable via the navbar brand.</span> -->
+                    <div class="col-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">&nbspTeam 6&nbsp</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Name" aria-label="Username"
+                                aria-describedby="basic-addon1" id="team6">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">Team 12</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Name" aria-label="Username"
+                                aria-describedby="basic-addon1" id="team12">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="navbar navbar-dark bg-dark">
+            <button class="navbar-toggler" type="button" id="configMenu" data-toggle="collapse"
+                data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </nav>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row justify-content-md-center pt-3 pb-3">
+            <div class="col-3 text-left">
+                <div class="h3">Picking: </div>
+            </div>
+            <div class="col-md-2 text-left extra-padding" id="roundDiv">
+                <div class="h4" id="roundLabel">Round:</div>
+            </div>
+            <div class="col-md-2 text-left extra-padding" id="pickDiv">
+                <div class="h4" id="pickLabel">Pick:</div>
+            </div>
+            <div class="col-md-2 text-left extra-padding" id="overallDiv">
+                <div class="h4" id="overallLabel">Overall:</div>
+            </div>
+            <div class="col-3 text-right">
+                Right side
+            </div>
+        </div>
+        <div class="row extra-height">
+            <div class="col-md-3">
+                <div class="display-3 pl-5" id="pickingDisplay"></div>
+            </div>
+            <div class="col-md-6 text-center mt-5" id="managerCol">
+                <div class="h1" id="manager">Press "Start" to begin the draft...</div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row justify-content-md-center pt-3 pb-3">
+            <div class="col-md-8 offset-2 pl-5">
+                <div class="display-1" style="overflow-x: hidden; overflow-y: hidden; opacity: 1; " id="timer">00 : 00 . 000</div>
+            </div>
+        </div>
+        <!-- <button id="toggle">Start</button> -->
+        <div class="row justify-content-md-center pt-3 pb-3">
+            <div class="col-md-8 text-center">
+                <button id="reset" class="btn btn-secondary btn-lg btn-block" disabled>Start Draft</button>
+            </div>
+        </div>
+        <!-- <button id="clear">Clear</button> -->
+        <div id="timerHistory">
+
+        </div>
+    </div>
+</body>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="js/stopwatch.js"></script>
+<script src="js/index.js"></script>
+
+</HTML>

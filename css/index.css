@@ -1,0 +1,17 @@
+.confirm_selection {
+    -webkit-animation: glow .5s infinite alternate;
+}
+
+@-webkit-keyframes glow {
+    to {
+        text-shadow: 0 0 10px red;
+    }
+}
+
+.extra-padding {
+    padding-left: 4.5%;
+}
+
+.extra-height {
+    height: 20%;
+}
