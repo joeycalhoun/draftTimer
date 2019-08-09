@@ -43,14 +43,14 @@ function StopWatch(
 
     function updateHistory() {
         //$('#timerHistory').prepend("<div class='row justify-content-md-center'><div class='col-md-4 text-left'><p class='display-4 text-muted'>" + (managers[determinePick()]) + "</p></div> <div class='col-md-4 text-right'><p class='display-4 text-muted'>" + (timeFormat(timeAlotted - time)) + "</p></div></div>");
-
-        
+        var currentPick = determinePick();
+        var timeUsed = timeFormat(timeAlotted - time);
         if($("#timerHistory").children().length > 4)
         {
             transitionHistory();
         }
         setTimeout(function(){
-            $("<div class='row justify-content-md-center'><div class='col-md-4 text-left'><p class='display-4 text-muted'>" + (managers[determinePick()]) + "</p></div> <div class='col-md-4 text-right'><p class='display-4 text-muted'>" + (timeFormat(timeAlotted - time)) + "</p></div></div>").hide().prependTo('#timerHistory').fadeIn(375);
+            $("<div class='row justify-content-md-center'><div class='col-md-4 text-left'><p class='display-4 text-muted'>" + (managers[currentPick]) + "</p></div> <div class='col-md-4 text-right'><p class='display-4 text-muted'>" + timeUsed + "</p></div></div>").hide().prependTo('#timerHistory').fadeIn(375);
         },375);
         
         
