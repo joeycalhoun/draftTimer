@@ -42,7 +42,18 @@ function StopWatch(
     }
 
     function updateHistory() {
-        $('#timerHistory').html("<div class='row justify-content-md-center'><div class='col-md-4 text-left'><p class='display-4 text-muted'>" + (managers[determinePick()]) + "</p></div> <div class='col-md-4 text-right'><p class='display-4 text-muted'>" + (timeFormat(timeAlotted - time)) + "</p></div></div>" + timerHistory.innerHTML);
+        //$('#timerHistory').prepend("<div class='row justify-content-md-center'><div class='col-md-4 text-left'><p class='display-4 text-muted'>" + (managers[determinePick()]) + "</p></div> <div class='col-md-4 text-right'><p class='display-4 text-muted'>" + (timeFormat(timeAlotted - time)) + "</p></div></div>");
+
+        
+        if($("#timerHistory").children().length > 4)
+        {
+            transitionHistory();
+        }
+        setTimeout(function(){
+            $("<div class='row justify-content-md-center'><div class='col-md-4 text-left'><p class='display-4 text-muted'>" + (managers[determinePick()]) + "</p></div> <div class='col-md-4 text-right'><p class='display-4 text-muted'>" + (timeFormat(timeAlotted - time)) + "</p></div></div>").hide().prependTo('#timerHistory').fadeIn(375);
+        },375);
+        
+        
     }
 
     function delta() {
@@ -176,6 +187,13 @@ function StopWatch(
         currentSwap = setTimeout(function(){
             transStep = 0;
         }, 600);
+    }
+
+    function transitionHistory(){
+        $('#timerHistory').children().last().fadeOut(375);
+        setTimeout(function(){
+            $('#timerHistory').children().last().remove();
+        },375);
     }
 
     function getFact(){
