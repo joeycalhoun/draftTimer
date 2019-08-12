@@ -15,3 +15,8 @@
 .extra-height {
     height: 15%;
 }
+
+.vr {
+    margin-left: 1rem;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+  }
