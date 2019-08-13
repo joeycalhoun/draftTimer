@@ -14,6 +14,18 @@ var rawFacts;
 var factsArray;
 var configMenuOpen = false;
 var configComplete = false;
+var self = this;
+// var newRow ="<div class='row'>"
+//                         +"<div class='col-12'>"
+//                             +"<div class='input-group mb-3'>"
+//                                 +"<div class='input-group-prepend'>"
+//                                     +"<span class='input-group-text' id='basic-addon1'>&nbspRound "+(i+1)+"&nbsp</span>"
+//                                 +"</div>"
+//                                 +"<input type='text' class='form-control' placeholder='Name' aria-label='Username'"
+//                                     +"aria-describedby='basic-addon1' id='round1'>"
+//                             +"</div>"
+//                         +"</div>"
+//                     +"</div>";
 
 var watch;
 
@@ -163,36 +175,59 @@ $("#applyFacts").click(function () {
 });
 
 function createRoundTimeTextBoxes(numOfRounds){
+    var newRow ="<div class='row'>"
+        +"<div class='col-12'>"
+            +"<div class='input-group mb-3'>"
+                +"<div class='input-group-prepend'>"
+                    +"<span class='input-group-text' id='basic-addon1'>&nbspRound "+(i+1)+"&nbsp</span>"
+                +"</div>"
+                +"<input type='text' class='form-control' placeholder='Name' aria-label='Username'"
+                    +"aria-describedby='basic-addon1' id='round1'>"
+            +"</div>"
+        +"</div>"
+    +"</div>";
+    
     for(var i = 0; i < numOfRounds; i++){
 
-        var beginColumn = "<div class='col-4'>";
-        var endColumn = "</div>";
-        var beginRow = "<div class='row'>";
-        var endRow = "</div>";
-        var newRow ="<div class='col-12'><div class='input-group mb-3'>"
-        +"<div class='input-group-prepend'>"
-            +"<span class='input-group-text' id='basic-addon1'>&nbspRound "+(i+1)+"&nbsp</span>"
+        var newRow ="<div class='row'>"
+        +"<div class='col-12'>"
+            +"<div class='input-group mb-3'>"
+                +"<div class='input-group-prepend'>"
+                    +"<span class='input-group-text' id='basic-addon1'>&nbspRound "+(i+1)+"&nbsp</span>"
+                +"</div>"
+                +"<input type='text' class='form-control' placeholder='Name' aria-label='Username'"
+                    +"aria-describedby='basic-addon1' id='round1'>"
+            +"</div>"
         +"</div>"
-        +"<input type='text' class='form-control' placeholder='Name' aria-label='Username'"
-            +"aria-describedby='basic-addon1' id='round1'>"
-        +"</div>";
-
-        if(i == numOfRounds-1){
-            console.log("i is "+i+" and I am newRow + end column");
-            $(beginRow+newRow+endRow+endColumn).appendTo('#customRoundTimesWrapper');
+    +"</div>";
+        if(i<6){
+            $(newRow).appendTo('#column1');
         }
-        else if(i == 0){
-            console.log("i is "+i+" and I am beginColumn + newRow");
-            $(beginColumn+beginRow+newRow+endRow).appendTo('#customRoundTimesWrapper');
+        else if(i >= 6 && i < 12){
+            $(newRow).appendTo('#column2');
         }
-        else if(i%6 == 0){
-            console.log("i is "+i+" and I am endColumn + newRow");
-            $(endColumn+beginColumn+beginRow+newRow+endRow).appendTo('#customRoundTimesWrapper');
+        else if(i >= 12 && i < 18){
+            $(newRow).appendTo('#column3');
         }
         else{
-            console.log("i is "+i+" and I am newRow");
-            $(beginRow+newRow+endRow).appendTo('#customRoundTimesWrapper');
+            
         }
+        // if(i == (numOfRounds-1)){
+        //     console.log("i is "+i+" and I am newRow + end column");
+        //     $(beginRow+newRow+endRow+endColumn).appendTo('#customRoundTimesWrapper');
+        // }
+        // else if(i == 0){
+        //     console.log("i is "+i+" and I am beginColumn + newRow");
+        //     $(beginColumn+beginRow+newRow+endRow).appendTo('#customRoundTimesWrapper');
+        // }
+        // else if((i%6) == 0){
+        //     console.log("i is "+i+" and I am endColumn + newRow");
+        //     $(endColumn+beginColumn+beginRow+newRow+endRow).appendTo('#customRoundTimesWrapper');
+        // }
+        // else{
+        //     console.log("i is "+i+" and I am newRow");
+        //     $(beginRow+newRow+endRow).appendTo('#customRoundTimesWrapper');
+        // }
         
     }
 }
