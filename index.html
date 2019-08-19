@@ -7,6 +7,8 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/index.css">
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    <script src="https://unpkg.com/popper.js"></script>
+    <script src="https://unpkg.com/tooltip.js"></script>
 </head>
 
 <body>
@@ -26,11 +28,8 @@
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="inputGroupFile04"
                                             aria-describedby="inputGroupFileAddon04">
-                                        <label class="custom-file-label" for="inputGroupFile04">Facts File</label>
+                                        <label class="custom-file-label" id="fileLabel" for="inputGroupFile04">Choose File</label>
                                     </div>
-                                    <!-- <div class="input-group-append">
-                                              <button class="btn btn-outline-secondary" type="button" id="applyFacts">Apply</button>
-                                            </div> -->
                                 </div>
                             </div>
                         </div>
@@ -189,7 +188,7 @@
                                     </label>
                                     <label class="btn btn-secondary">
                                         <input type="radio" name="roundTimeOptions" id="rbCustomTimes"
-                                            value="rbCustomTimes" autocomplete="off"> Custom
+                                            value="rbCustomTimes" data-toggle="warning-popover" data-content="Warning About Something!" data-placement="bottom" autocomplete="off"> Custom
                                         Times
                                     </label>
                                 </div>

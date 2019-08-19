@@ -96,20 +96,16 @@ function fillFacts(myFacts) {
 }
 
 $("#apply").click(function () {
-    //fillTeams();
-    readFactsFile();
-    //fillFacts(factsFile);
-    //console.log(factsArray);
-    //console.log(factsArray);
     setTimeout(function () {
-        watch = new StopWatch(
-            timeAlotted,
-            managers,
-            factsArray
-        );
-        console.log("Created Watch Successfully")
-        configComplete = true;
-        //$("#reset").prop('disabled', false);
+        if (checkAllComplete()) {
+            watch = new StopWatch(
+                timeAlotted,
+                managers,
+                factsArray
+            );
+            console.log("Created Watch Successfully")
+            configComplete = true;
+        }
     }, 500);
 });
 
@@ -137,7 +133,11 @@ $("#configMenu").click(function () {
 //     console.log("constructed watch 2");
 //}
 
-
+$("#inputGroupFile04").change(function(){
+    console.log("File Imported");
+    readFactsFile();
+    $("#fileLabel").html($("#inputGroupFile04").val().toString());
+});
 function readFactsFile() {
     var fileInput = $("#inputGroupFile04")[0];
     var file = fileInput.files[0];
@@ -174,43 +174,43 @@ $("#applyFacts").click(function () {
     }
 });
 
-function createRoundTimeTextBoxes(numOfRounds){
-    var newRow ="<div class='row'>"
-        +"<div class='col-12'>"
-            +"<div class='input-group mb-3'>"
-                +"<div class='input-group-prepend'>"
-                    +"<span class='input-group-text' id='basic-addon1'>&nbspRound "+(i+1)+"&nbsp</span>"
-                +"</div>"
-                +"<input type='text' class='form-control' placeholder='Name' aria-label='Username'"
-                    +"aria-describedby='basic-addon1' id='round1'>"
-            +"</div>"
-        +"</div>"
-    +"</div>";
-    
-    for(var i = 0; i < numOfRounds; i++){
+function createRoundTimeTextBoxes(numOfRounds) {
+    var newRow = "<div class='row'>"
+        + "<div class='col-12'>"
+        + "<div class='input-group mb-3'>"
+        + "<div class='input-group-prepend'>"
+        + "<span class='input-group-text' id='basic-addon1'>&nbspRound " + (i + 1) + "&nbsp</span>"
+        + "</div>"
+        + "<input type='text' class='form-control' placeholder='Name' aria-label='Username'"
+        + "aria-describedby='basic-addon1' id='round"+(i+1)+"'>"
+        + "</div>"
+        + "</div>"
+        + "</div>";
 
-        var newRow ="<div class='row'>"
-        +"<div class='col-12'>"
-            +"<div class='input-group mb-3'>"
-                +"<div class='input-group-prepend'>"
-                    +"<span class='input-group-text' id='basic-addon1'>&nbspRound "+(i+1)+"&nbsp</span>"
-                +"</div>"
-                +"<input type='text' class='form-control' placeholder='Name' aria-label='Username'"
-                    +"aria-describedby='basic-addon1' id='round1'>"
-            +"</div>"
-        +"</div>"
-    +"</div>";
-        if(i<6){
+    for (var i = 0; i < numOfRounds; i++) {
+
+        var newRow = "<div class='row'>"
+            + "<div class='col-12'>"
+            + "<div class='input-group mb-3'>"
+            + "<div class='input-group-prepend'>"
+            + "<span class='input-group-text' id='basic-addon1'>&nbspRound " + (i + 1) + "&nbsp</span>"
+            + "</div>"
+            + "<input type='text' class='form-control' placeholder='Name' aria-label='Username'"
+            + "aria-describedby='basic-addon1' id='round"+(i+1)+"'>"
+            + "</div>"
+            + "</div>"
+            + "</div>";
+        if (i < 6) {
             $(newRow).appendTo('#column1');
         }
-        else if(i >= 6 && i < 12){
+        else if (i >= 6 && i < 12) {
             $(newRow).appendTo('#column2');
         }
-        else if(i >= 12 && i < 18){
+        else if (i >= 12 && i < 18) {
             $(newRow).appendTo('#column3');
         }
-        else{
-            
+        else {
+
         }
         // if(i == (numOfRounds-1)){
         //     console.log("i is "+i+" and I am newRow + end column");
@@ -228,22 +228,120 @@ function createRoundTimeTextBoxes(numOfRounds){
         //     console.log("i is "+i+" and I am newRow");
         //     $(beginRow+newRow+endRow).appendTo('#customRoundTimesWrapper');
         // }
-        
+
     }
 }
 console.log($('input:radio[name="roundTimeOptions"]:checked').val());
 
-$('input:radio[name="roundTimeOptions"]').change(function (){
+$('input:radio[name="roundTimeOptions"]').change(function () {
 
-        if ($(this).val() == 'rbUniformTimes') {
-            console.log("Uniform");
-            $("#txtTimePerPick").prop("disabled", false);
-        }
-        else {
-            console.log("Custom");
+    if ($(this).val() == 'rbUniformTimes') {
+        console.log("Uniform");
+        $("#txtTimePerPick").prop("disabled", false);
+    }
+    else {
+        console.log("Custom");
+        if(checkRoundsSet()){
+            $("#txtTimePerPick").html('');
             $("#txtTimePerPick").prop("disabled", true);
-            createRoundTimeTextBoxes($('#txtNumRounds').val());
+            $('#rbCustomTimes').popover('disable');
+             createRoundTimeTextBoxes($('#txtNumRounds').val());
+        }
+        else{
+            $('#rbCustomTimes').popover('enable');
+            $('#rbCustomTimes').attr('data-content', 'The number of Rounds has not been set yet!');
+            $('#rbCustomTimes').popover('show');
+        }
+    }
+});
+
+function verifyInputNumerical(inputElement){
+
+    var isValid = /^\d+$/.test($("'"+inputElement+"'").val());
+    applyValidationClass(inputElement, isValid);
+    return isValid;
+}
+
+function applyValidationClass(inputToMark, isValid){
+    if(isValid){
+        $("'"+inputToMark+"'").addClass('is-valid');
+    }
+    else{
+        $("'"+inputToMark+"'").addClass('is-invalid');
+    }
+}
+
+function checkIfDocIsValid(){
+    $('*').each(function(index){
+        if($(this).hasClass('is-invalid')){
+            return false;
         }
     });
+    return true;
+}
+
+function checkAllComplete() {
+    console.log('checkAllComplete()');
+    if (checkNamesComplete() && checkFileImported() && checkTimeSet()) {
+        console.log('checkAllComplete = True');
+        return true;
+    }
+    else {
+        console.log('checkAllComplete = False');
+        return false;
+    }
+}
+function checkNamesComplete() {
+    console.log('checkNamesComplete()');
+    var finished = true;
+    for (var i = 0; i < 12; i++) {
+        if ($('#team' + (i + 1)).val() == '') {
+            finished = false;
+        }
+    }
+    return finished;
+}
+function checkFileImported() {
+    console.log('checkFileImported()');
+    if (factsArray != null) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+function checkTimeSet() {
+    console.log('checkTimeSet()');
+    if ($('input:radio[name="roundTimeOptions"]').val() == 'rbUniformTimes') {
+        console.log("Uniform");
+        if($('#txtTimePerPick').val() == null || $('#txtTimePerPick').val() == ''){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+    else {
+        for(var i = 0; i < $('#txtNumRounds').val(); i++){
+            if($('#round'+(i+1)).val() == null || $('#round'+(i+1)).val() == ''){
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+function checkRoundsSet(){
+    if($('#txtNumRounds').val() == null || $('#txtNumRounds').val() == ''){
+        return false;
+    }
+    else{
+        return true;
+    }
+}
+
+$('#rbCustomTimes').popover({
+    trigger: 'focus'
+  });
 
 
