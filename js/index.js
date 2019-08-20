@@ -255,30 +255,6 @@ $('input:radio[name="roundTimeOptions"]').change(function () {
     }
 });
 
-function verifyInputNumerical(inputElement){
-
-    var isValid = /^\d+$/.test($("'"+inputElement+"'").val());
-    applyValidationClass(inputElement, isValid);
-    return isValid;
-}
-
-function applyValidationClass(inputToMark, isValid){
-    if(isValid){
-        $("'"+inputToMark+"'").addClass('is-valid');
-    }
-    else{
-        $("'"+inputToMark+"'").addClass('is-invalid');
-    }
-}
-
-function checkIfDocIsValid(){
-    $('*').each(function(index){
-        if($(this).hasClass('is-invalid')){
-            return false;
-        }
-    });
-    return true;
-}
 
 function checkAllComplete() {
     console.log('checkAllComplete()');
@@ -332,13 +308,41 @@ function checkTimeSet() {
 }
 
 function checkRoundsSet(){
-    if($('#txtNumRounds').val() == null || $('#txtNumRounds').val() == ''){
+    if(!verifyInputNumerical('#txtNumRounds')){ //'#txtNumRounds').val() == null || $('#txtNumRounds').val() == ''
         return false;
     }
     else{
         return true;
     }
 }
+
+function verifyInputNumerical(inputElement){
+
+    var isValid = /^\d+$/.test($(''+inputElement+'').val());
+    applyValidationClass(inputElement, isValid);
+    return isValid;
+}
+
+function applyValidationClass(inputToMark, isValid){
+    if(isValid){
+        console.log("is Valid");
+        $(''+inputToMark+'').addClass('is-valid');
+    }
+    else{
+        console.log("isnt Valid");
+        $(''+inputToMark+'').addClass('is-invalid');
+    }
+}
+
+function checkIfDocIsValid(){
+    $('*').each(function(index){
+        if($(this).hasClass('is-invalid')){
+            return false;
+        }
+    });
+    return true;
+}
+
 
 $('#rbCustomTimes').popover({
     trigger: 'focus'
