@@ -3,9 +3,10 @@
 function StopWatch(
     timeAlotted,
     managers,
-    factsArray
+    factsArray,
+    roundTimes
     ) {
-    var time = timeAlotted;
+    var time;
     var interval;
     var offset;
     this.isOn = false;
@@ -23,6 +24,9 @@ function StopWatch(
         }
     }
 
+    function getRoundTime(){
+        return roundTimes[round-1] * 1000
+    }
     function update() {
         if (this.isOn) {
             time -= delta();
@@ -44,7 +48,7 @@ function StopWatch(
     function updateHistory() {
         //$('#timerHistory').prepend("<div class='row justify-content-md-center'><div class='col-md-4 text-left'><p class='display-4 text-muted'>" + (managers[determinePick()]) + "</p></div> <div class='col-md-4 text-right'><p class='display-4 text-muted'>" + (timeFormat(timeAlotted - time)) + "</p></div></div>");
         var currentPick = determinePick();
-        var timeUsed = timeFormat(timeAlotted - time);
+        var timeUsed = timeFormat(getRoundTime() - time);
         if($("#timerHistory").children().length > 4)
         {
             transitionHistory();
@@ -85,6 +89,7 @@ function StopWatch(
     }
 
     this.start = function () {
+        time = getRoundTime();
         transitionStep1();
         this.manageTopStatus();
         if (!this.isOn) {
@@ -112,7 +117,7 @@ function StopWatch(
             pick = 0;
             round++;
         }
-        time = timeAlotted;
+        time = getRoundTime();
         update();
         if (!this.isOn) {
             this.start();

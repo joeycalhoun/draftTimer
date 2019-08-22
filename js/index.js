@@ -15,6 +15,7 @@ var factsArray;
 var configMenuOpen = false;
 var configComplete = false;
 var self = this;
+var roundTimes = [];
 // var newRow ="<div class='row'>"
 //                         +"<div class='col-12'>"
 //                             +"<div class='input-group mb-3'>"
@@ -74,6 +75,29 @@ var fillTeams = function () {
     }
 };
 
+function fillRoundTimes(){
+    var isUniform;
+    var uniformTime;
+    if ($('input:radio[name="roundTimeOptions"]:checked').val() == 'rbUniformTimes'){
+        isUniform = true;
+        uniformTime = $('#txtTimePerPick').val().toString();
+    }
+    else{
+        isUniform = false;
+    }
+    console.log(isUniform);
+    for(var i = 0; i < $('#txtNumRounds').val().toString(); i++){
+        if(isUniform){
+            roundTimes.push(uniformTime);
+        }
+        else{
+            console.log("doing custom");
+            roundTimes.push($('#round'+(i+1)+'').val());
+        }
+    }
+    console.log(roundTimes);
+    //roundTimes.push($('#txtNumRounds').val().toString());
+}
 function fillFacts(myFacts) {
     factsArray = new Array(managers.length);
     var pairs = myFacts.split('\n');
@@ -95,13 +119,21 @@ function fillFacts(myFacts) {
     console.log("Facts Loaded Successfully");
 }
 
+function fillRightSide(){
+    for(var i = 0; i < 3; i++){
+        $('#right-side').append("<li class='list-group-item'>"+managers[i]+" - 02 : 02 : 000</li>");
+    }
+}
 $("#apply").click(function () {
+    fillRoundTimes();
+    fillRightSide();
     setTimeout(function () {
         if (checkAllComplete()) {
             watch = new StopWatch(
                 timeAlotted,
                 managers,
-                factsArray
+                factsArray,
+                roundTimes
             );
             console.log("Created Watch Successfully")
             configComplete = true;
@@ -195,7 +227,7 @@ function createRoundTimeTextBoxes(numOfRounds) {
             + "<div class='input-group-prepend'>"
             + "<span class='input-group-text' id='basic-addon1'>&nbspRound " + (i + 1) + "&nbsp</span>"
             + "</div>"
-            + "<input type='text' class='form-control' placeholder='Name' aria-label='Username'"
+            + "<input type='text' class='form-control' placeholder='Time In Seconds' aria-label='Username'"
             + "aria-describedby='basic-addon1' id='round"+(i+1)+"'>"
             + "</div>"
             + "</div>"
@@ -234,7 +266,6 @@ function createRoundTimeTextBoxes(numOfRounds) {
 console.log($('input:radio[name="roundTimeOptions"]:checked').val());
 
 $('input:radio[name="roundTimeOptions"]').change(function () {
-
     if ($(this).val() == 'rbUniformTimes') {
         console.log("Uniform");
         $("#txtTimePerPick").prop("disabled", false);
@@ -288,7 +319,7 @@ function checkFileImported() {
 }
 function checkTimeSet() {
     console.log('checkTimeSet()');
-    if ($('input:radio[name="roundTimeOptions"]').val() == 'rbUniformTimes') {
+    if ($('input:radio[name="roundTimeOptions"]:checked').val() == 'rbUniformTimes') {
         console.log("Uniform");
         if($('#txtTimePerPick').val() == null || $('#txtTimePerPick').val() == ''){
             return false;
