@@ -49,6 +49,10 @@ $('#reset').click(function () {
     //fillTeams();
     //fillFacts(rawFacts);
     if (watch.isOn || resetBtn.textContent == "Start Draft") {
+        if(resetBtn.textContent == "Start Draft")
+        {
+            fillAverages(0);
+        }
         resetBtn.textContent = 'Next Pick';
     }
     else {
@@ -57,6 +61,15 @@ $('#reset').click(function () {
     watch.reset();
 });
 
+function fillAverages(iteration){
+    
+        setTimeout(function(){
+            $("<li class='list-group-item'><span class='text-left'>"+managers[iteration]+" </span><span class='text-right' id='averageTime"+iteration+"'>00 : 00 : 000</span></li>").hide().appendTo('#right-side').fadeIn(375);
+            if(iteration < managers.length-1){
+                fillAverages(iteration+1);
+            }
+        },200);  
+}
 // resetBtn.addEventListener('click', function () {
 //     //fillTeams();
 //     fillFacts(rawFacts);
@@ -126,7 +139,7 @@ function fillRightSide(){
 }
 $("#apply").click(function () {
     fillRoundTimes();
-    fillRightSide();
+    //fillRightSide();
     setTimeout(function () {
         if (checkAllComplete()) {
             watch = new StopWatch(

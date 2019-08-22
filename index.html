@@ -28,7 +28,8 @@
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="inputGroupFile04"
                                             aria-describedby="inputGroupFileAddon04">
-                                        <label class="custom-file-label" id="fileLabel" for="inputGroupFile04">Choose File</label>
+                                        <label class="custom-file-label" id="fileLabel" for="inputGroupFile04">Choose
+                                            File</label>
                                     </div>
                                 </div>
                             </div>
@@ -175,8 +176,8 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon1">Time Per Pick</span>
                                     </div>
-                                    <input type="text" class="form-control" placeholder="Time In Seconds" aria-label="Username"
-                                        aria-describedby="basic-addon1" id="txtTimePerPick">
+                                    <input type="text" class="form-control" placeholder="Time In Seconds"
+                                        aria-label="Username" aria-describedby="basic-addon1" id="txtTimePerPick">
                                 </div>
                             </div>
                             <div class="col-4">
@@ -188,7 +189,9 @@
                                     </label>
                                     <label class="btn btn-secondary">
                                         <input type="radio" name="roundTimeOptions" id="rbCustomTimes"
-                                            value="rbCustomTimes" data-toggle="warning-popover" data-content="Warning About Something!" data-placement="bottom" autocomplete="off"> Custom
+                                            value="rbCustomTimes" data-toggle="warning-popover"
+                                            data-content="Warning About Something!" data-placement="bottom"
+                                            autocomplete="off"> Custom
                                         Times
                                     </label>
                                 </div>
@@ -213,8 +216,66 @@
         </nav>
     </div>
 
-    <div class="container-fluid">
-        <div class="row justify-content-md-center pt-3 pb-3">
+    <div class="container-fluid row">
+        <div class="col-9">
+            <div class="row pt-3">
+                <div class=col-4>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="h3">Picking: </div>
+                        </div>
+                    </div>
+                    <div class="row pt-2">
+                        <div class="col-12">
+                            <div class="display-3 pl-4" id="pickingDisplay"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-8 justify-content-md-center">
+                    <div class="row pt-2">
+                        <div class="col-4">
+                            <div class="h4" id="roundLabel">Round:</div>
+                        </div>
+                        <div class="col-4">
+                            <div class="h4" id="pickLabel">Pick:</div>
+                        </div>
+                        <div class="col-4">
+                            <div class="h4" id="overallLabel">Overall:</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-9 offset-3 text-center">
+                    <div class="h1" id="manager">Press "Start" to begin the draft...</div>
+                </div>
+            </div>
+            <div class="row pt-5 justify-content-md-center">
+                <div class="col-6 offset-5">
+                    <div class="display-1" style="overflow-x: hidden; overflow-y: hidden; opacity: 1; " id="timer">00 :
+                        00 .
+                        000</div>
+                </div>
+            </div>
+            <div class="row pt-5">
+                <div class="col-9 offset-3 text-center">
+                    <button id="reset" class="btn btn-secondary btn-lg btn-block" disabled>Start Draft</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-9 offset-3">
+                    <div id="timerHistory">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <ul class="list-group-flush pt-5" id="right-side">
+                
+            </ul>
+        </div>
+        <!-- <div class="row justify-content-md-center pt-3 pb-3">
             <div class="col-3 text-left">
                 <div class="h3">Picking: </div>
             </div>
@@ -228,9 +289,9 @@
                 <div class="h4" id="overallLabel">Overall:</div>
             </div>
             <div class="col-3 text-right">
-                    <ul class="list-group-flush" id="right-side">
-    
-                    </ul>
+                <ul class="list-group-flush" id="right-side">
+
+                </ul>
             </div>
         </div>
         <div class="row extra-height">
@@ -249,16 +310,14 @@
                     000</div>
             </div>
         </div>
-        <!-- <button id="toggle">Start</button> -->
         <div class="row justify-content-md-center pt-3 pb-3">
             <div class="col-md-8 text-center">
                 <button id="reset" class="btn btn-secondary btn-lg btn-block" disabled>Start Draft</button>
             </div>
         </div>
-        <!-- <button id="clear">Clear</button> -->
         <div id="timerHistory">
 
-        </div>
+        </div> -->
     </div>
 </body>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
