@@ -45,16 +45,38 @@ function StopWatch(
         $('#timer').text(formattedTime);
     }
 
+    function determineNumberOfPrevPicks(curPick, overAllPick){
+        // $('#roundLabel').text("Round: " + round);
+        // $('#pickLabel').text("Pick: " + (pick + 1));
+        // $('#overallLabel').text("Overall: " + determineOverall());
+        var num = 12 - (curPick + 1);
+        num = num + overAllPick;
+        num = num/12;
+        return num;
+    }
     function updateHistory() {
         //$('#timerHistory').prepend("<div class='row justify-content-md-center'><div class='col-md-4 text-left'><p class='display-4 text-muted'>" + (managers[determinePick()]) + "</p></div> <div class='col-md-4 text-right'><p class='display-4 text-muted'>" + (timeFormat(timeAlotted - time)) + "</p></div></div>");
         var currentPick = determinePick();
+        var pickToPass = pick;
+        var overAllPick = determineOverall();
         var timeUsed = timeFormat(getRoundTime() - time);
         if($("#timerHistory").children().length > 4)
         {
             transitionHistory();
         }
         setTimeout(function(){
+            console.log(managers[currentPick] + "has picked "+determineNumberOfPrevPicks(pickToPass, overAllPick)+" picks so far.");
+            console.log(determinePick());
             $("<div class='row justify-content-md-center'><div class='col-md-4 text-left'><p class='display-4 text-muted'>" + (managers[currentPick]) + "</p></div> <div class='col-md-4 text-right'><p class='display-4 text-muted'>" + timeUsed + "</p></div></div>").hide().prependTo('#timerHistory').fadeIn(375);
+            if(round == 1){
+                $('#averageTime'+currentPick).html(timeUsed);
+            }
+            else{
+                $('#averageTime'+currentPick).html(timeFormat(findAverageTime(currentPick, timeUnformat(timeUsed), determineNumberOfPrevPicks(pickToPass,overAllPick))));
+                removeMarkersForTimes();
+                $('#averageLI'+findSlowest()).addClass('list-group-item-danger');
+                $('#averageLI'+findFastest()).addClass('list-group-item-success');
+            }
         },375);
         
         
@@ -67,6 +89,55 @@ function StopWatch(
         return timePassed;
     }
 
+    function removeMarkersForTimes(){
+        for(var i = 0; i < managers.length; i++){
+            $('#averageLI'+i).removeClass('list-group-item-danger');
+            $('#averageLI'+i).removeClass('list-group-item-success');
+        }
+    }
+    function findAverageTime(curPick, newTime, numPicks){
+        console.log(newTime);
+        var curAvg = timeUnformat($('#averageTime'+curPick).html());
+        console.log(curAvg);
+        var total = curAvg * (numPicks-1);
+        var newAvg = (total + newTime) / (numPicks);
+        console.log(newAvg);
+        return newAvg;
+    }
+
+    function findSlowest(){
+        var slowestManager;
+        var slowestManagerTime = 0
+        for(var i = 0; i < managers.length; i++){
+            if(timeUnformat($('#averageTime'+i).html()) > slowestManagerTime){
+                slowestManagerTime = timeUnformat($('#averageTime'+i).html());
+                slowestManager = i;
+            }
+        }
+        return slowestManager;
+    }
+
+    function findFastest(){
+        var fastestManager = findSlowest();
+        var fastestManagerTime = timeUnformat($('#averageTime'+findSlowest()).html());
+        for(var i = 0; i < managers.length; i++){
+            if(timeUnformat($('#averageTime'+i).html()) < fastestManagerTime){
+                fastestManagerTime = timeUnformat($('#averageTime'+i).html());
+                fastestManager = i;
+            }
+        }
+        return fastestManager;
+    }
+    function timeUnformat(timeString){
+        console.log(timeString);
+        var timeInMilliseconds = 0;
+        var min = timeString.substring(0,2);
+        var sec = timeString.substring(5,7);
+        var mil = timeString.substring(10,14);
+        timeInMilliseconds = parseInt(min * 60000) + parseInt(sec * 1000) + parseInt(mil);
+        console.log(timeInMilliseconds);
+        return timeInMilliseconds;
+    }
     function timeFormat(timeInMilli) {
         var time = new Date(timeInMilli);
         var minutes = time.getMinutes().toString();
@@ -129,10 +200,10 @@ function StopWatch(
     this.manageTopStatus = function (){
         $('#roundLabel').text("Round: " + round);
         $('#pickLabel').text("Pick: " + (pick + 1));
-        $('#overallLabel').text("Overall: " + this.determineOverall());
+        $('#overallLabel').text("Overall: " + determineOverall());
     }
 
-    this.determineOverall = function () {
+    function determineOverall() {
         return ((round - 1) * 12) + pick + 1;
     }
 

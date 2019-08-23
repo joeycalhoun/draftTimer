@@ -62,9 +62,9 @@ $('#reset').click(function () {
 });
 
 function fillAverages(iteration){
-    
+
         setTimeout(function(){
-            $("<li class='list-group-item'><span class='text-left'>"+managers[iteration]+" </span><span class='text-right' id='averageTime"+iteration+"'>00 : 00 : 000</span></li>").hide().appendTo('#right-side').fadeIn(375);
+            $("<li class='list-group-item' id='averageLI"+iteration+"'><div class='row'><div class='col-6 text-left'>"+managers[iteration]+"</div><div class='col-6 text-right'id='averageTime"+iteration+"'>00 : 00 : 000</div></div></li>").hide().appendTo('#right-side').fadeIn(375);
             if(iteration < managers.length-1){
                 fillAverages(iteration+1);
             }
@@ -312,23 +312,25 @@ function checkAllComplete() {
     }
 }
 function checkNamesComplete() {
-    console.log('checkNamesComplete()');
-    var finished = true;
-    for (var i = 0; i < 12; i++) {
-        if ($('#team' + (i + 1)).val() == '') {
-            finished = false;
-        }
-    }
-    return finished;
+    return true;
+    // console.log('checkNamesComplete()');
+    // var finished = true;
+    // for (var i = 0; i < 12; i++) {
+    //     if ($('#team' + (i + 1)).val() == '') {
+    //         finished = false;
+    //     }
+    // }
+    // return finished;
 }
 function checkFileImported() {
-    console.log('checkFileImported()');
-    if (factsArray != null) {
-        return true;
-    }
-    else {
-        return false;
-    }
+    return true;
+    // console.log('checkFileImported()');
+    // if (factsArray != null) {
+    //     return true;
+    // }
+    // else {
+    //     return false;
+    // }
 }
 function checkTimeSet() {
     console.log('checkTimeSet()');

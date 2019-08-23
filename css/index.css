@@ -24,3 +24,7 @@
   ::-webkit-scrollbar { 
     display: none; 
 }
+
+.custom-span{
+    display: inline-block;
+}
