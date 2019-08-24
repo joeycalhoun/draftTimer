@@ -28,3 +28,7 @@
 .custom-span{
     display: inline-block;
 }
+
+.set-height-manager{
+    height: 100px;
+}

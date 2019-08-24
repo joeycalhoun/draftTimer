@@ -1,7 +1,7 @@
-mike,mike fact 1
+mike,Once ate a turd.
 joey,joey fact 1
 zack,zack fact 1
-aj,aj fact 1
+aj,Claims fantasy football skill despite losing $100's in DFS.
 matt,matt fact 1
 alex,alex fact 1
 jordan,jordan fact 1
@@ -16,9 +16,8 @@ domingo,domingo fact 2
 jeremy,jeremy fact 2
 dustin,dustin fact 2
 jason,jason fact 2
-mike,mike fact 2
+mike,Frequently sucks dick.
 joey,joey fact 2
 zack,zack fact 2
-aj,aj fact 2
 matt,matt fact 2
 alex,alex fact 2

@@ -8,8 +8,8 @@ var roundLabel = document.getElementById("roundLabel");
 var pickLabel = document.getElementById("pickLabel");
 var overallLabel = document.getElementById("overallLabel");
 var timeAlotted = 120000;
-var managers1 = ["", "", "", "", "", "", "", "", "", "", "", ""];
-var managers = ["AJ", "Mike", "Joey", "Matt", "Dustin", "Jeremy", "Domingo", "Alex", "Jason", "Kyle", "Jordan", "Zack"];
+var managers = ["", "", "", "", "", "", "", "", "", "", "", ""];
+var managers1 = ["AJ","Zack","Joey","Alex","Mike","Dustin","Kyle","Matt","Jeremy","Domingo","Jason","Jordan"];
 var rawFacts;
 var factsArray;
 var configMenuOpen = false;
@@ -84,7 +84,8 @@ function fillAverages(iteration){
 
 var fillTeams = function () {
     for (var i = 0; i < 12; i++) {
-        managers[i] = document.getElementById("team" + ((i + 1).toString())).value;
+        managers[i] = $('#team'+(i+1)).val().toString();
+        //managers[i] = document.getElementById("team" + ((i + 1).toString())).value;
     }
 };
 
@@ -138,7 +139,9 @@ function fillRightSide(){
     }
 }
 $("#apply").click(function () {
+    fillTeams();
     fillRoundTimes();
+    readFactsFile();
     //fillRightSide();
     setTimeout(function () {
         if (checkAllComplete()) {
@@ -180,7 +183,6 @@ $("#configMenu").click(function () {
 
 $("#inputGroupFile04").change(function(){
     console.log("File Imported");
-    readFactsFile();
     $("#fileLabel").html($("#inputGroupFile04").val().toString());
 });
 function readFactsFile() {
